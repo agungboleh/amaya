@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Colors - Aesthetic Authority Design System */
+  --color-surface: #f9f9f9;
+  --color-surface-dim: #dadada;
+  --color-surface-bright: #f9f9f9;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3f4;
+  --color-surface-container: #eeeeee;
+  --color-surface-container-high: #e8e8e8;
+  --color-surface-container-highest: #e2e2e2;
+  --color-on-surface: #1a1c1c;
+  --color-on-surface-variant: #5f3e39;
+  --color-inverse-surface: #2f3131;
+  --color-inverse-on-surface: #f0f1f1;
+  --color-outline: #956e68;
+  --color-outline-variant: #eabcb4;
+  --color-surface-tint: #c00001;
+  --color-primary: #bc0001;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #eb0003;
+  --color-on-primary-container: #fffbff;
+  --color-inverse-primary: #ffb4a8;
+  --color-secondary: #575e70;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d9dff5;
+  --color-on-secondary-container: #5c6274;
+  --color-tertiary: #5c5c5c;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #747474;
+  --color-on-tertiary-container: #fcfcfc;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-background: #f9f9f9;
+  --color-on-background: #1a1c1c;
+
+  /* Custom brand colors */
+  --color-brand-red: #f90706;
+  --color-brand-black: #000000;
+  --color-brand-navy: #111827;
+
+  /* Spacing tokens */
+  --spacing-gutter: 1.5rem;
+  --spacing-section-gap-lg: 8rem;
+  --spacing-section-gap-sm: 4rem;
+  --spacing-container-max: 1280px;
+  --spacing-margin-x-mobile: 1.25rem;
+  --spacing-margin-x-desktop: 2.5rem;
+  --spacing-stack-space: 1rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-DEFAULT: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Font families */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+
+  /* Font sizes */
+  --text-display-lg: 64px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.04em;
+  --text-display-lg--font-weight: 800;
+
+  --text-display-lg-mobile: 40px;
+  --text-display-lg-mobile--line-height: 1.2;
+  --text-display-lg-mobile--letter-spacing: -0.02em;
+  --text-display-lg-mobile--font-weight: 800;
+
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 1.3;
+  --text-headline-lg--font-weight: 700;
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 1.4;
+  --text-headline-md--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-label-md: 14px;
+  --text-label-md--line-height: 1.2;
+  --text-label-md--letter-spacing: 0.05em;
+  --text-label-md--font-weight: 600;
+
+  --text-caption: 12px;
+  --text-caption--line-height: 1.4;
+  --text-caption--font-weight: 500;
+}
+
+/* Material Symbols base style */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Hero pattern */
+.hero-pattern {
+  background-image: radial-gradient(
+    circle at 2px 2px,
+    rgba(188, 0, 1, 0.1) 1px,
+    transparent 0
+  );
+  background-size: 40px 40px;
+}
+
+/* Hero gradient for project detail pages */
+.hero-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #f3f3f4 100%);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
