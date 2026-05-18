@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run cleanup",
+    "build": "next build",
     "cleanup": "node scripts/cleanup-out.mjs",
     "deploy": "npm run build && node scripts/deploy-out.mjs",
     "start": "next start",
