@@ -1,25 +1,14 @@
 "use client";
+
 import {
-  RiArchiveLine,
-  RiCalculatorLine,
-  RiDashboardLine,
-  RiDeviceLine,
-  RiIdCardLine,
-  RiP2pLine,
+  Ri24HoursLine,
+  RiMailLine,
+  RiMailSendLine,
+  RiMapPinLine,
 } from "react-icons/ri";
 import SectionHeading from "../ui/SectionHeading";
-import Button from "../ui/Button";
-import ProductsAnimation from "../scroll-animation/ProductsAnimation";
 import { useRef } from "react";
-
-const features = [
-  { icon: RiP2pLine, label: "Multi-Branch Synchronization" },
-  { icon: RiCalculatorLine, label: "Automated Tax Calculation" },
-  { icon: RiIdCardLine, label: "Staff & Access Role Management" },
-  { icon: RiDashboardLine, label: "Built-in CRM & Loyalty" },
-  { icon: RiArchiveLine, label: "Real-time Inventory & Pricing" },
-  { icon: RiDeviceLine, label: "Omnichannel & Multi-Device Support" },
-];
+import Button from "../ui/Button";
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -43,42 +32,100 @@ export default function ContactSection() {
               />
             </div>
           </div>
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 mt-4">
             <div>
-              <h3 className="font-bold text-2xl mt-8 mb-4 text-brand-base">
-                Tell Us About Your Project
-              </h3>
-              <p className="text-brand-base/70 text-lg leading-relaxed mb-4">
-                Juno is more than just a point of sale it&apos;s the operational
-                hub for your growing business. Built for speed and reliability,
-                Juno seamlessly synchronizes your daily transactions,
-                multi-branch inventory, and financial reporting. Pre-integrated
-                with leading payment gateways and logistics platforms, we
-                provide an enterprise-grade retail experience designed to scale
-                with your operations.
+              <p className="font-bold text-2xl mb-4 text-brand-base">
+                Ready to Scale Your Business?
               </p>
-              <Button href="/#services" size="md" className="mb-12">
-                Request a Demo
-              </Button>
-              <div className="grid grid-cols-2 gap-6">
-                {features.map((feature) => (
-                  <div
-                    key={feature.label}
-                    className="flex items-center gap-3 p-3 bg-brand-base/10 rounded-lg"
-                  >
-                    <feature.icon className="text-xl text-brand-base/70" />
-                    <span className="font-light text-xs text-brand-base/70">
-                      {feature.label}
-                    </span>
+              <p className="text-brand-base/70 text-lg leading-relaxed mb-4">
+                Whether you need a robust enterprise architecture, an
+                intelligent AI integration, or a dedicated engineering team, we
+                are ready to help. Drop us a message detailing your technical
+                challenges, and our lead engineers will get back to you with a
+                strategic consultation.
+              </p>
+              <div className="space-y-6 mb-12">
+                <div className="flex items-center gap-4">
+                  <div className="w-8 h-8 bg-brand-base/10 rounded-full flex items-center justify-center">
+                    <RiMailLine className="text-brand-base/70 text-sm" />
                   </div>
-                ))}
+                  <span className="text-brand-base/70">
+                    hello@amayaperdana.id
+                  </span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-8 h-8 bg-brand-base/10 rounded-full flex items-center justify-center">
+                    <RiMapPinLine className="text-brand-base/70 text-sm" />
+                  </div>
+                  <span className="text-brand-base/70">Jakarta, Indonesia</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-caption text-brand-base/70">
+                <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+                Our engineers respond within
+                <Ri24HoursLine className="text-brand-red text-2xl" />
+                <span className="font-bold text-brand-base/70">
+                  24 business hours
+                </span>
               </div>
             </div>
-            <ProductsAnimation
-              imageSrc="/assets/products/junopos.webp"
-              imageAlt="Juno POS"
-              triggerRef={sectionRef}
-            />
+            <div className="relative">
+              <div className="absolute inset-0 bg-brand-base/10 rounded-2xl -rotate-2 scale-102 z-0 opacity-30" />
+              <div className="relative z-10 p-10 rounded-2xl bg-[#f7f6f3] shadow-lg border-2 border-brand-base/10">
+                <form className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="uppercase text-xs text-brand-base/70 font-semibold tracking-wider">
+                        Full Name *
+                      </label>
+                      <input
+                        className="text-sm w-full bg-white border-none focus:ring-1 focus:ring-brand-red rounded-lg p-4 outline-none mt-2 focus:placeholder-transparent"
+                        placeholder="John Doe"
+                        type="text"
+                      />
+                    </div>
+                    <div>
+                      <label className="uppercase text-xs text-brand-base/70 font-semibold tracking-wider">
+                        Work Email *
+                      </label>
+                      <input
+                        className="text-sm w-full bg-white border-none focus:ring-1 focus:ring-brand-red rounded-lg p-4 outline-none mt-2 focus:placeholder-transparent"
+                        placeholder="john@company.com"
+                        type="email"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="uppercase text-xs text-brand-base/70 font-semibold tracking-wider">
+                      Company Name *
+                    </label>
+                    <input
+                      className="text-sm w-full bg-white border-none focus:ring-1 focus:ring-brand-red rounded-lg p-4 outline-none mt-2 focus:placeholder-transparent"
+                      placeholder="Your Company"
+                      type="text"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="uppercase text-xs text-brand-base/70 font-semibold tracking-wider">
+                      Message *
+                    </label>
+                    <textarea
+                      className="text-sm w-full bg-white border-none focus:ring-1 focus:ring-brand-red rounded-lg p-4 outline-none resize-none mt-2 focus:placeholder-transparent"
+                      placeholder="Tell us about your project, technical challenges, and what you'd like to build..."
+                      rows={5}
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full mt-4"
+                    size="lg"
+                    icon={RiMailSendLine}
+                  >
+                    Request a Consultation
+                  </Button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
