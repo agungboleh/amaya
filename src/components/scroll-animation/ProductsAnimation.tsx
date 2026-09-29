@@ -20,18 +20,15 @@ export default function ProductsAnimation({
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
     const maskGroup = maskGroupRef.current;
     const scrollTriggerTarget = triggerRef?.current || containerRef.current;
     if (!maskGroup || !scrollTriggerTarget) return;
     maskGroup.innerHTML = "";
-
     const rows = 10;
     const cols = 10;
     const blockWidth = 100 / cols;
     const blockHeight = 100 / rows;
     const createdBlocks: SVGRectElement[] = [];
-
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         const rect = document.createElementNS(
@@ -40,18 +37,15 @@ export default function ProductsAnimation({
         );
         const initialX = c * blockWidth;
         const initialY = r * blockHeight;
-
         rect.setAttribute("x", initialX.toString());
         rect.setAttribute("y", initialY.toString());
         rect.setAttribute("width", (blockWidth + 0.1).toString()); // Anti-aliasing gap fix
         rect.setAttribute("height", (blockHeight + 0.1).toString());
         rect.setAttribute("fill", "white");
         rect.setAttribute("shape-rendering", "crispEdges");
-
         rect.dataset.startY = initialY.toString();
         rect.dataset.row = r.toString();
         rect.dataset.col = c.toString();
-
         maskGroup.appendChild(rect);
         createdBlocks.push(rect);
       }
@@ -66,20 +60,17 @@ export default function ProductsAnimation({
           scrub: 1,
         },
       });
-
       createdBlocks.forEach((block) => {
         const startY = parseFloat(block.dataset.startY || "0");
         const r = parseInt(block.dataset.row || "0", 10);
-
         const baseRowDelay = r * 0.08;
         const randomScatter = Math.random() * 0.15;
         const delay = baseRowDelay + randomScatter;
-
         timeline.to(
           block,
           {
             attr: {
-              y: startY - 100 - r * 2, // Geser kotak ke atas keluar canvas SVG
+              y: startY - 100 - r * 2,
             },
             ease: "power1.inOut",
           },
@@ -87,7 +78,6 @@ export default function ProductsAnimation({
         );
       });
     }, containerRef);
-
     return () => ctx.revert();
   }, [triggerRef]);
 

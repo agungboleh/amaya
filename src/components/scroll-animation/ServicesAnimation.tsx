@@ -17,16 +17,12 @@ export default function ServicesAnimation() {
     () => {
       const path = pathRef.current;
       const dot = dotRef.current;
-
       if (!path || !dot) return;
-
       const pathLength = path.getTotalLength();
-
       gsap.set(path, {
         strokeDasharray: pathLength,
         strokeDashoffset: pathLength,
       });
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -35,7 +31,6 @@ export default function ServicesAnimation() {
           scrub: 1,
         },
       });
-
       tl.to(
         dot,
         {
@@ -50,7 +45,6 @@ export default function ServicesAnimation() {
         },
         0,
       );
-
       tl.to(
         path,
         {
@@ -60,7 +54,6 @@ export default function ServicesAnimation() {
         },
         0,
       );
-
       tl.to(".node-1", { opacity: 1, scale: 1, duration: 0.05 }, 0.99);
       tl.to(dot, { autoAlpha: 0, scale: 0, duration: 0.05 }, 1);
     },
@@ -76,7 +69,6 @@ export default function ServicesAnimation() {
         preserveAspectRatio="xMinYMin meet"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Background Track */}
         <path
           className="path-bg"
           d="M0 1H411.241C466.47 1 511.241 45.7715 511.241 101V1031C511.241 1086.23 556.013 1131 611.241 1131H1198"
@@ -84,8 +76,6 @@ export default function ServicesAnimation() {
           strokeWidth="4"
           fill="none"
         />
-
-        {/* Active Animated Progress Track */}
         <path
           ref={pathRef}
           id="path"
@@ -95,13 +85,8 @@ export default function ServicesAnimation() {
           strokeWidth="4.5"
           fill="none"
         />
-
-        {/* Moving Red Dot */}
         <circle ref={dotRef} id="dot" fill="#F90706" cx="0" cy="1" r="6" />
-
-        {/* Checkpoint Dots */}
         <circle cx="1195" cy="1110" r="4" />
-        
         <g transform="translate(1165, 1130)">
           <svg
             width="109"

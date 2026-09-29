@@ -17,16 +17,12 @@ export default function AboutAnimation() {
     () => {
       const path = pathRef.current;
       const dot = dotRef.current;
-
       if (!path || !dot) return;
-
       const pathLength = path.getTotalLength();
-
       gsap.set(path, {
         strokeDasharray: pathLength,
         strokeDashoffset: pathLength,
       });
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -35,7 +31,6 @@ export default function AboutAnimation() {
           scrub: 1,
         },
       });
-
       tl.to(
         dot,
         {
@@ -50,7 +45,6 @@ export default function AboutAnimation() {
         },
         0,
       );
-
       tl.to(
         path,
         {
@@ -60,7 +54,6 @@ export default function AboutAnimation() {
         },
         0,
       );
-
       tl.to(".node-1", { opacity: 1, scale: 1, duration: 0.05 }, 0.26);
       tl.to(".node-2", { opacity: 1, scale: 1, duration: 0.05 }, 0.42);
       tl.to(".node-3", { opacity: 1, scale: 1, duration: 0.05 }, 0.55);
@@ -79,7 +72,6 @@ export default function AboutAnimation() {
         preserveAspectRatio="xMinYMin meet"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Background Track */}
         <path
           className="path-bg"
           d="M220 1H492C519.614 1 542 23.3858 542 51V642C542 669.614 519.614 692 492 692H0"
@@ -87,8 +79,6 @@ export default function AboutAnimation() {
           strokeWidth="4"
           fill="none"
         />
-
-        {/* Active Animated Progress Track */}
         <path
           ref={pathRef}
           id="path"
@@ -98,17 +88,11 @@ export default function AboutAnimation() {
           strokeWidth="4.5"
           fill="none"
         />
-
-        {/* Moving Red Dot */}
         <circle ref={dotRef} id="dot" fill="#F90706" cx="220" cy="1" r="6" />
-
-        {/* Checkpoint Dots */}
         <circle cx="531" cy="145" r="4" />
         <circle cx="531" cy="380" r="4" />
         <circle cx="531" cy="580" r="4" />
         <circle cx="0" cy="680" r="4" />
-
-        {/* Nodes / Icons (Node 1, Node 2, Node 3, Grid, Node 4) */}
         <g className="node node-1 opacity-0" transform="translate(623, 125)">
           <svg
             width="32"
