@@ -7,11 +7,40 @@ import {
   RiMapPinLine,
 } from "react-icons/ri";
 import SectionHeading from "../ui/SectionHeading";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Button from "../ui/Button";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react/webgpu";
+import type { DotLottie } from "@lottiefiles/dotlottie-react";
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [dotLottie, setDotLottie] = useState<DotLottie | null>(null);
+  const dotLottieRefCallback = (dotLottieInstance: DotLottie) => {
+    setDotLottie(dotLottieInstance);
+  };
+  useEffect(() => {
+    if (!dotLottie) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          dotLottie.stop();
+          dotLottie.play();
+        } else {
+          dotLottie.stop();
+        }
+      },
+      {
+        threshold: 0.3,
+      },
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => {
+      observer.disconnect();
+    };
+  }, [dotLottie]);
+
   return (
     <section
       id="contact"
@@ -67,6 +96,16 @@ export default function ContactSection() {
                 <span className="font-bold text-brand-base/70">
                   24 business hours
                 </span>
+              </div>
+              <div className="relative h-50 overflow-visible mt-8">
+                <div className="absolute left-0 top-0 w-full max-w-md scale-100 origin-top-left">
+                  <DotLottieReact
+                    src="/assets/animation/Contact.lottie"
+                    loop={false}
+                    autoplay={false}
+                    dotLottieRefCallback={dotLottieRefCallback}
+                  />
+                </div>
               </div>
             </div>
             <div className="relative">
