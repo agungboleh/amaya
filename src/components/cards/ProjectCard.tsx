@@ -1,6 +1,6 @@
-import { Project } from "../scroll-animation/ProjectsAnimation";
 import { RiCheckboxCircleLine } from "react-icons/ri";
 import Button from "../ui/Button";
+import { Project } from "../sections/Projects";
 
 interface ProjectCardProps {
   project: Project;
@@ -8,16 +8,10 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div
-      className="relative w-full h-135 rounded-xl transition-shadow"
-      style={{ transformStyle: "preserve-3d" }}
-    >
-      <div
-        className="absolute inset-0 w-full h-full bg-white rounded-xl overflow-hidden shadow-sm border border-brand-base/10 hover:shadow-md transition-shadow p-8 flex flex-col justify-between"
-        style={{ backfaceVisibility: "hidden" }}
-      >
-        <div className="flex flex-col flex-1">
-          <div className="flex justify-between items-start mb-6">
+    <div className="w-full h-full">
+      <div className="project-card bg-white rounded-xl border border-brand-base/10 shadow-sm hover:shadow-md transition-shadow p-8 flex flex-col justify-between h-full overflow-hidden">
+        <div className="flex-1 flex flex-col">
+          <div className="flex justify-between items-start mb-6 shrink-0">
             <div className="w-12 h-12 bg-brand-base text-white flex items-center justify-center font-bold rounded">
               {project.initials}
             </div>
@@ -27,74 +21,39 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </span>
             </div>
           </div>
-          <span className="text-brand-red text-xl font-bold block mb-1">
+          <span className="text-brand-red font-bold block mb-1 shrink-0">
             {project.company}
           </span>
-          <p className="text-base font-bold mb-4 text-brand-base">
+          <p className="text-2xl font-bold mb-4 text-brand-base shrink-0">
             {project.title}
           </p>
-          <p className="text-brand-base/70 text-base mb-6">
-            {project.description}
-          </p>
-          <ul className="space-y-2 text-base text-brand-base/70 flex-1">
-            {project.features.map((feature) => (
-              <li key={feature} className="flex items-center gap-2">
-                <RiCheckboxCircleLine className="text-brand-base/70 text-lg" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <Button
-          variant="ghost"
-          href={project.href}
-          size="sm"
-          className="mt-4 font-light"
-        >
-          Discover More
-        </Button>
-      </div>
-      <div
-        className="absolute inset-0 w-full h-full bg-brand-base text-white rounded-xl overflow-hidden shadow-2xl border border-white/10 p-8 flex flex-col justify-between"
-        style={{
-          backfaceVisibility: "hidden",
-          transform: "rotateY(180deg)",
-        }}
-      >
-        <div className="flex flex-col flex-1">
-          <div className="flex justify-between items-start mb-6">
-            <div className="w-12 h-12 bg-white text-brand-base flex items-center justify-center font-bold rounded">
-              {project.initials}
-            </div>
-            <div className="text-right">
-              <span className="text-xs text-white uppercase tracking-tighter">
-                {project.category}
-              </span>
-            </div>
+          <div className="collapsible max-h-125 opacity-100 transition-all shrink-0">
+            <span className="border-b border-brand-base/5 w-full block mb-4" />
+            <p className="text-brand-base/70 text-base mb-6">
+              {project.description}
+            </p>
           </div>
-          <span className="text-brand-red text-xl font-bold block mb-1">
-            {project.company}
-          </span>
-          <p className="text-base font-bold mb-4 text-white">{project.title}</p>
-          <p className="text-white/70 text-base mb-6">{project.description}</p>
-
-          <ul className="space-y-2 text-base text-gray-300 flex-1">
-            {project.features.map((feature) => (
-              <li key={feature} className="flex items-center gap-2">
-                <RiCheckboxCircleLine className="text-white/70 text-lg" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="collapsible max-h-125 opacity-100 transition-all flex-1">
+            <ul className="space-y-2 text-base text-brand-base/70">
+              {project.features.map((feature) => (
+                <li key={feature} className="flex items-start gap-2">
+                  <RiCheckboxCircleLine className="text-brand-base/70 text-lg shrink-0 mt-1" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <Button
-          variant="ghost"
-          href={project.href}
-          size="sm"
-          className="mt-4 font-light text-brand-red border-brand-red hover:bg-brand-red hover:text-black transition-colors"
-        >
-          Discover More
-        </Button>
+        <div className="card-cta-wrapper mt-8 pt-2 shrink-0">
+          <Button
+            variant="ghost"
+            href={project.href}
+            size="sm"
+            className="font-light w-full"
+          >
+            Discover More
+          </Button>
+        </div>
       </div>
     </div>
   );

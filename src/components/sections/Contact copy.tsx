@@ -7,14 +7,45 @@ import {
   RiMapPinLine,
 } from "react-icons/ri";
 import SectionHeading from "../ui/SectionHeading";
+import { useRef, useEffect, useState } from "react";
 import Button from "../ui/Button";
-import ContactAnimation from "../scroll-animation/ContactAnimation";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react/webgpu";
+import type { DotLottie } from "@lottiefiles/dotlottie-react";
 
 export default function ContactSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [dotLottie, setDotLottie] = useState<DotLottie | null>(null);
+  const dotLottieRefCallback = (dotLottieInstance: DotLottie) => {
+    setDotLottie(dotLottieInstance);
+  };
+  useEffect(() => {
+    if (!dotLottie) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          dotLottie.stop();
+          dotLottie.play();
+        } else {
+          dotLottie.stop();
+        }
+      },
+      {
+        threshold: 0.3,
+      },
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => {
+      observer.disconnect();
+    };
+  }, [dotLottie]);
+
   return (
     <section
       id="contact"
       className="relative w-full bg-white scroll-mt-20 py-20 overflow-hidden"
+      ref={sectionRef}
     >
       <div className="relative max-w-container-max mx-auto px-margin-x-desktop">
         <div className="relative z-10">
@@ -66,8 +97,15 @@ export default function ContactSection() {
                   24 business hours
                 </span>
               </div>
-              <div className="absolute top-12 left-44 w-full h-[calc(100%-40px)] pointer-events-none z-1">
-                <ContactAnimation />
+              <div className="relative h-50 overflow-visible mt-8">
+                <div className="absolute left-0 top-0 w-full max-w-md scale-100 origin-top-left">
+                  <DotLottieReact
+                    src="/assets/animation/Contact.lottie"
+                    loop={false}
+                    autoplay={false}
+                    dotLottieRefCallback={dotLottieRefCallback}
+                  />
+                </div>
               </div>
             </div>
             <div className="relative">

@@ -1,11 +1,19 @@
-"use client";
+import SectionHeading from "@/components/ui/SectionHeading";
+import ProjectCard from "@/components/cards/ProjectCard";
+import ProjectAnimation from "../scroll-animation/ProjectsAnimation";
 
-import SectionHeading from "../ui/SectionHeading";
-import ProjectsAnimation, {
-  Project,
-} from "../scroll-animation/ProjectsAnimation";
+export interface Project {
+  id: string;
+  initials: string;
+  category: string;
+  company: string;
+  title: string;
+  description: string;
+  features: string[];
+  href: string;
+}
 
-const ProjectData: Project[] = [
+export const projects: Project[] = [
   {
     id: "mead-johnson",
     initials: "MJ",
@@ -87,24 +95,38 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative w-full bg-[#f7f6f3] scroll-mt-20 pb-20"
+      className="pt-16 pb-12 bg-surface-container-low bg-[#f7f6f3] relative"
     >
-      <div className="absolute top-10 left-0 right-0 z-20 max-w-container-max mx-auto px-margin-x-desktop">
-        <div className="grid grid-cols-12">
-          <div className="col-span-12">
+      <div className="max-w-container-max mx-auto px-margin-x-mobile md:px-margin-x-desktop">
+        <ProjectAnimation>
+          <div className="projects-content-wrapper">
             <SectionHeading
               label="Case Studies"
               title={
                 <>
-                  Our <span className="text-brand-red">Projects</span>
+                  Our <span className="text-primary">Projects</span>
                 </>
               }
               description="A selection of enterprise-grade systems we've architected and deployed for global and national brands across Indonesia."
+              align="right"
             />
+            <div className="grid lg:grid-cols-6 gap-gutter mt-10 items-stretch">
+              {projects.map((project, index) => (
+                <div
+                  key={project.id}
+                  className={`
+                    h-full lg:col-span-2
+                    ${index === 3 ? "lg:col-start-2" : ""}
+                    ${index === 4 ? "lg:col-start-4" : ""}
+                  `}
+                >
+                  <ProjectCard project={project} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </ProjectAnimation>
       </div>
-      <ProjectsAnimation projects={ProjectData} />
     </section>
   );
 }
