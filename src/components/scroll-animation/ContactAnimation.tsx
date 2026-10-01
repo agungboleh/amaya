@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
@@ -12,13 +12,18 @@ export default function ServicesAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const dotRef = useRef<SVGCircleElement>(null);
-
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   useGSAP(
     () => {
+      if (!isMounted) return;
       const path = pathRef.current;
       const dot = dotRef.current;
       if (!path || !dot) return;
       const pathLength = path.getTotalLength();
+      if (!pathLength) return;
       gsap.set(path, {
         strokeDasharray: pathLength,
         strokeDashoffset: pathLength,
@@ -57,9 +62,12 @@ export default function ServicesAnimation() {
       );
       tl.to(".node-1", { opacity: 1, scale: 1, duration: 0.05 }, 0.99);
       tl.to(dot, { autoAlpha: 0, scale: 0, duration: 0.05 }, 1);
-      ScrollTrigger.refresh();
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200);
+      return () => clearTimeout(timer);
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [isMounted] },
   );
 
   return (
