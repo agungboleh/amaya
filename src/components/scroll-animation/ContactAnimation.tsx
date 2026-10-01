@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, useGSAP);
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function ServicesAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,6 +29,7 @@ export default function ServicesAnimation() {
           start: "top 60%",
           end: "bottom 80%",
           scrub: 1,
+          invalidateOnRefresh: true,
         },
       });
       tl.to(
@@ -56,6 +57,7 @@ export default function ServicesAnimation() {
       );
       tl.to(".node-1", { opacity: 1, scale: 1, duration: 0.05 }, 0.99);
       tl.to(dot, { autoAlpha: 0, scale: 0, duration: 0.05 }, 1);
+      ScrollTrigger.refresh();
     },
     { scope: containerRef },
   );
