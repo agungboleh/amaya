@@ -1,6 +1,5 @@
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProjectCard from "@/components/cards/ProjectCard";
-import ProjectAnimation from "../scroll-animation/ProjectsAnimation";
 
 export interface Project {
   id: string;
@@ -93,39 +92,32 @@ export const projects: Project[] = [
 
 export default function ProjectsSection() {
   return (
-    <section
-      id="projects"
-      className="pt-16 pb-12 bg-surface-container-low bg-[#f7f6f3] relative"
-    >
+    <section id="projects" className="py-section-gap-lg bg-[#f7f6f3]">
       <div className="max-w-container-max mx-auto px-margin-x-mobile md:px-margin-x-desktop">
-        <ProjectAnimation>
-          <div className="projects-content-wrapper">
-            <SectionHeading
-              label="Case Studies"
-              title={
-                <>
-                  Our <span className="text-primary">Projects</span>
-                </>
-              }
-              description="A selection of enterprise-grade systems we've architected and deployed for global and national brands across Indonesia."
-              align="right"
-            />
-            <div className="grid lg:grid-cols-6 gap-gutter mt-10 items-stretch">
-              {projects.map((project, index) => (
-                <div
-                  key={project.id}
-                  className={`
-                    h-full lg:col-span-2
-                    ${index === 3 ? "lg:col-start-2" : ""}
-                    ${index === 4 ? "lg:col-start-4" : ""}
-                  `}
-                >
-                  <ProjectCard project={project} />
-                </div>
-              ))}
+        <SectionHeading
+          label="Case Studies"
+          title={
+            <>
+              Our <span className="text-primary">Projects</span>
+            </>
+          }
+          description="A selection of enterprise-grade systems we've architected and deployed for global and national brands across Indonesia."
+          align="right"
+        />
+        <div className="grid lg:grid-cols-6 gap-gutter mt-20 items-stretch">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              className={`
+                            h-full lg:col-span-2
+                            ${index === 3 ? "lg:col-start-2" : ""}
+                            ${index === 4 ? "lg:col-start-4" : ""}
+                          `}
+            >
+              <ProjectCard project={project} />
             </div>
-          </div>
-        </ProjectAnimation>
+          ))}
+        </div>
       </div>
     </section>
   );
