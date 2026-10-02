@@ -32,9 +32,7 @@ export default function Navbar() {
       }
       const navbarHeight = 80;
       const scrollY = window.scrollY + navbarHeight + 10;
-
       let currentSection = "home";
-
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const el = document.getElementById(sectionIds[i]);
 
@@ -55,29 +53,21 @@ export default function Navbar() {
         );
       }
     };
-
     handleScroll();
-
     window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isProjectPage]);
-
-  // Sync state with route changes
   useEffect(() => {
     if (isProjectPage) {
       setScrolled(true);
       setActiveSection("");
     } else {
       setScrolled(window.scrollY > 20);
-
-      // Read active section from URL when entering page
       const hash = window.location.hash.replace("#", "");
-
       if (sectionIds.includes(hash)) {
         setActiveSection(hash);
       } else {
@@ -85,7 +75,6 @@ export default function Navbar() {
       }
     }
   }, [isProjectPage]);
-
   const getSectionId = (label: string): string => {
     const map: Record<string, string> = {
       Home: "home",
@@ -95,7 +84,6 @@ export default function Navbar() {
       Projects: "projects",
       Contact: "contact",
     };
-
     return map[label] || "";
   };
 
@@ -107,8 +95,7 @@ export default function Navbar() {
           : "bg-white border-b border-transparent"
       }`}
     >
-      <div className="flex justify-between items-center w-full px-margin-x-desktop max-w-container-max mx-auto h-20">
-        {/* Logo */}
+      <div className="flex justify-between items-center w-full px-margin-x-mobile md:px-margin-x-desktop max-w-container-max mx-auto h-20">
         <Link
           href="/"
           className="flex items-center gap-5 font-bold transition-colors duration-300 text-black"
@@ -118,16 +105,17 @@ export default function Navbar() {
             alt="Amaya Logo"
             className="w-auto h-10"
           />
-          <span className="text-2xl font-bold tracking-tight leading-none">
+          <span className="text-2xl font-bold tracking-tight leading-none md:block hidden">
             AMAYA PERDANA KREASINDO
           </span>
+          <span className="text-2xl font-bold tracking-tight leading-none md:hidden block">
+            AMAYA
+          </span>
         </Link>
-
         <nav className="hidden xl:flex items-center gap-8">
           {navItems.map((item) => {
             const sectionId = getSectionId(item.label);
             const isActive = activeSection === sectionId;
-
             return (
               <Link
                 key={item.href}
@@ -144,7 +132,6 @@ export default function Navbar() {
             );
           })}
         </nav>
-
         <button
           className="flex justify-between items-center xl:hidden transition-colors duration-300 text-black"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -155,13 +142,11 @@ export default function Navbar() {
           </span>
         </button>
       </div>
-
       {mobileOpen && (
-        <nav className="xl:hidden bg-white border-t-2 border-black/10 mx-margin-x-desktop py-10 flex flex-col gap-5">
+        <nav className="xl:hidden bg-white border-t-2 border-black/10 mx-margin-x-mobile py-10 flex flex-col gap-5">
           {navItems.map((item) => {
             const sectionId = getSectionId(item.label);
             const isActive = activeSection === sectionId;
-
             return (
               <Link
                 key={item.href}
