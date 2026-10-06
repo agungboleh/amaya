@@ -17,14 +17,14 @@ export default function ServiceCard({
   tags,
 }: ServiceCardProps) {
   return (
-    <div className="bg-white p-10 rounded-xl relative overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group border border-gray-200">
-      <span className="absolute top-4 right-8 text-8xl font-black text-brand-base/5 select-none">
+    <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-xl relative overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group border border-gray-200">
+      <span className="absolute top-3 right-5 sm:top-4 sm:right-8 text-6xl sm:text-7xl lg:text-8xl font-black text-brand-base/5 select-none">
         {number}
       </span>
       <div className="relative z-10">
-        <Icon className="text-brand-red text-4xl mb-4 block" />
-        <p className="font-bold text-2xl text-brand-base mb-4">{title}</p>
-        <p className="text-brand-base/70 mb-6">{description}</p>
+        <Icon className="text-brand-red text-3xl sm:text-4xl mb-4 block" />
+        <p className="font-bold text-xl sm:text-2xl text-brand-base mb-3 sm:mb-4">{title}</p>
+        <p className="text-sm sm:text-base text-brand-base/70 mb-6">{description}</p>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <TagService key={tag} label={tag} />

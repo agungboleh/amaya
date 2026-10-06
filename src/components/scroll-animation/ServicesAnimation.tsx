@@ -71,7 +71,7 @@ export default function ServicesAnimation() {
       >
         <path
           className="path-bg"
-          d="M0 1H411.241C466.47 1 511.241 45.7715 511.241 101V1031C511.241 1086.23 556.013 1131 611.241 1131H1198"
+          d="M0 1H431.241C486.47 1 531.241 45.7715 531.241 101V1031C531.241 1086.23 576.013 1131 631.241 1131H1198"
           stroke="#FFE7E7"
           strokeWidth="4"
           fill="none"
@@ -80,7 +80,7 @@ export default function ServicesAnimation() {
           ref={pathRef}
           id="path"
           className="path-progress"
-          d="M0 1H411.241C466.47 1 511.241 45.7715 511.241 101V1031C511.241 1086.23 556.013 1131 611.241 1131H1198"
+          d="M0 1H431.241C486.47 1 531.241 45.7715 531.241 101V1031C531.241 1086.23 576.013 1131 631.241 1131H1198"
           stroke="#F90706"
           strokeWidth="4.5"
           fill="none"
@@ -115,7 +115,7 @@ export default function ServicesAnimation() {
             />
           </svg>
         </g>
-        <g transform="translate(-250, 1060)">
+        <g transform="translate(-250, 1080)">
           <svg
             width="153"
             height="110"

@@ -53,9 +53,9 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative w-full bg-[#f7f6f3] scroll-mt-20 py-20 overflow-hidden"
+      className="relative w-full bg-[#f7f6f3] scroll-mt-20 py-14 md:py-20 overflow-hidden"
     >
-      <div className="relative max-w-container-max mx-auto px-margin-x-desktop">
+      <div className="relative max-w-container-max mx-auto px-margin-x-mobile md:px-margin-x-desktop">
         <div className="relative z-10">
           <div className="grid grid-cols-12">
             <div className="col-span-12">
@@ -70,8 +70,8 @@ export default function ServicesSection() {
               />
             </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-gutter mt-20 mb-20">
-            <div className="absolute w-full h-[calc(100%+15px)] pointer-events-none z-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-gutter mt-10 md:mt-20 mb-0 md:mb-20">
+            <div className="hidden md:block absolute left-2 w-full h-full pointer-events-none z-1">
               <ServicesAnimation />
             </div>
             {services.map((service) => (

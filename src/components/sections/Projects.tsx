@@ -92,26 +92,29 @@ export const projects: Project[] = [
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-section-gap-lg bg-[#f7f6f3]">
+    <section
+      id="projects"
+      className="py-section-gap-sm lg:py-section-gap-lg bg-[#f7f6f3] scroll-mt-20"
+    >
       <div className="max-w-container-max mx-auto px-margin-x-mobile md:px-margin-x-desktop">
         <SectionHeading
           label="Case Studies"
           title={
             <>
-              Our <span className="text-primary">Projects</span>
+              Our <span className="text-brand-red">Projects</span>
             </>
           }
           description="A selection of enterprise-grade systems we've architected and deployed for global and national brands across Indonesia."
           align="right"
         />
-        <div className="grid lg:grid-cols-6 gap-gutter mt-20 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-5 md:gap-gutter mt-10 md:mt-20 items-stretch">
           {projects.map((project, index) => (
             <div
               key={project.id}
               className={`
-                            h-full lg:col-span-2
+                            h-full md:col-span-2
                             ${index === 3 ? "lg:col-start-2" : ""}
-                            ${index === 4 ? "lg:col-start-4" : ""}
+                            ${index === 4 ? "md:col-start-2 lg:col-start-4" : ""}
                           `}
             >
               <ProjectCard project={project} />
