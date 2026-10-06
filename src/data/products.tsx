@@ -43,7 +43,7 @@ export const productsData: Product[] = [
       "The Most Comprehensive & Cost-Effective Retail Management Ecosystem in Indonesia.",
     description:
       "Juno is more than just a point of sale it's the operational hub for your growing business. Built for speed and reliability, Juno seamlessly synchronizes your daily transactions, multi-branch inventory, and financial reporting. Pre-integrated with leading payment gateways and logistics platforms, we provide an enterprise-grade retail experience designed to scale with your operations.",
-    demoUrl: "/#contact",
+    demoUrl: "https://www.junopos.com",
     imageSrc: "/assets/products/junopos.webp",
     imageAlt: "Juno POS",
     features: [
@@ -66,7 +66,7 @@ export const productsData: Product[] = [
     highlightTitle: "A Digital Home for the Wellspring Community.",
     description:
       "A unified portal for residents to access neighborhood updates, track maintenance bills (IPL), complete seamless digital payments, and stay updated on upcoming community events. Fostering a safe, comfortable, clean, and connected neighborhood ecosystem.",
-    demoUrl: "/#contact",
+    demoUrl: "https://wellspring.amayaperdana.id",
     imageSrc: "/assets/products/wellspring.webp",
     imageAlt: "Wellspring People's",
     features: [

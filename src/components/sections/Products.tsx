@@ -55,6 +55,8 @@ export default function ProductsSection() {
               </p>
               <Button
                 href={activeProduct.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 size="md"
                 className="mb-8 md:mb-12"
               >

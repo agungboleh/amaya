@@ -9,6 +9,8 @@ interface ButtonProps {
   icon?: IconType;
   className?: string;
   type?: "button" | "submit";
+  target?: string;
+  rel?: string;
 }
 
 export default function Button({
@@ -19,6 +21,8 @@ export default function Button({
   icon: Icon,
   className = "",
   type = "button",
+  target,
+  rel,
 }: ButtonProps) {
   const baseClasses =
     "inline-flex items-center justify-center gap-2 font-bold rounded-lg transition-all scale-100 active:scale-95 group";
@@ -49,7 +53,7 @@ export default function Button({
   );
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} target={target} rel={rel} className={classes}>
         {content}
       </Link>
     );
