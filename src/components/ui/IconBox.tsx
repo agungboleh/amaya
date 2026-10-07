@@ -1,7 +1,7 @@
 import { IconType } from "react-icons";
 
 interface IconBoxProps {
-  icon: IconType; // Menggunakan tipe IconType dari react-icons
+  icon: IconType;
   className?: string;
 }
 

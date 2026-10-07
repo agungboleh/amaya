@@ -58,7 +58,7 @@ export default function ProductsSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="md"
-                className="mb-8 md:mb-12"
+                className="mb-8 md:mb-12 w-full md:w-auto"
               >
                 Request a Demo
               </Button>
