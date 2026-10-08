@@ -2,8 +2,8 @@
 
 import { navItems } from "@/data/navigation";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState, useCallback } from "react";
 
 const sectionIds = [
   "home",
@@ -14,67 +14,19 @@ const sectionIds = [
   "contact",
 ];
 
+const NAVBAR_HEIGHT = 80;
 export default function Navbar() {
   const pathname = usePathname();
-  const isProjectPage = pathname.startsWith("/projects/");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const isSubPage =
+  pathname === "/projects" ||
+  pathname.startsWith("/projects/") ||
+  pathname === "/legal" ||
+  pathname.startsWith("/legal/");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(isProjectPage);
+  const [scrolled, setScrolled] = useState(isSubPage);
   const [activeSection, setActiveSection] = useState("home");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!isProjectPage) {
-        setScrolled(window.scrollY > 20);
-      }
-      if (isProjectPage) {
-        setActiveSection("");
-        return;
-      }
-      const navbarHeight = 80;
-      const scrollY = window.scrollY + navbarHeight + 10;
-      let currentSection = "home";
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-
-        if (el && el.offsetTop <= scrollY) {
-          currentSection = sectionIds[i];
-          break;
-        }
-      }
-      setActiveSection(currentSection);
-      const currentHash = window.location.hash.replace("#", "");
-      if (currentHash !== currentSection) {
-        window.history.replaceState(
-          null,
-          "",
-          currentSection === "home"
-            ? window.location.pathname
-            : `#${currentSection}`,
-        );
-      }
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isProjectPage]);
-  useEffect(() => {
-    if (isProjectPage) {
-      setScrolled(true);
-      setActiveSection("");
-    } else {
-      setScrolled(window.scrollY > 20);
-      const hash = window.location.hash.replace("#", "");
-      if (sectionIds.includes(hash)) {
-        setActiveSection(hash);
-      } else {
-        setActiveSection("home");
-      }
-    }
-  }, [isProjectPage]);
   const getSectionId = (label: string): string => {
     const map: Record<string, string> = {
       Home: "home",
@@ -86,7 +38,107 @@ export default function Navbar() {
     };
     return map[label] || "";
   };
-
+  const getAbsoluteTop = (element: HTMLElement): number => {
+    let offsetTop = 0;
+    let currentElement: HTMLElement | null = element;
+    while (currentElement) {
+      offsetTop += currentElement.offsetTop;
+      currentElement = currentElement.offsetParent as HTMLElement | null;
+    }
+    return offsetTop;
+  };
+  const scrollToSection = useCallback(
+    (sectionId: string, behavior: ScrollBehavior = "smooth") => {
+      const section = document.getElementById(sectionId);
+      if (!section) {
+        return false;
+      }
+      if (sectionId === "home") {
+        window.scrollTo({ top: 0, behavior });
+        setActiveSection("home");
+        return true;
+      }
+      const sectionTop = getAbsoluteTop(section);
+      const targetPosition = Math.max(0, sectionTop - NAVBAR_HEIGHT);
+      window.scrollTo({
+        top: targetPosition,
+        behavior,
+      });
+      setActiveSection(sectionId);
+      return true;
+    },
+    [],
+  );
+  useEffect(() => {
+    if (isSubPage) {
+      setScrolled(true);
+      setActiveSection("");
+      return;
+    }
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 20);
+      const scrollPosition = currentScrollY + NAVBAR_HEIGHT + 20;
+      let currentSection = "home";
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sectionIds[i]);
+        if (section) {
+          const absoluteTop = getAbsoluteTop(section);
+          if (absoluteTop <= scrollPosition) {
+            currentSection = sectionIds[i];
+            break;
+          }
+        }
+      }
+      setActiveSection(currentSection);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isSubPage]);
+  useEffect(() => {
+    if (isSubPage) return;
+    const targetSection = searchParams.get("section");
+    if (!targetSection || !sectionIds.includes(targetSection)) {
+      return;
+    }
+    const executeScroll = () => {
+      scrollToSection(targetSection, "smooth");
+    };
+    const timer1 = setTimeout(executeScroll, 100);
+    const timer2 = setTimeout(() => {
+      executeScroll();
+      window.history.replaceState(
+        null,
+        "",
+        targetSection === "home" ? "/" : `/#${targetSection}`,
+      );
+    }, 600);
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [isSubPage, searchParams, scrollToSection]);
+  const handleNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
+    setMobileOpen(false);
+    if (isSubPage) {
+      event.preventDefault();
+      router.push(`/?section=${sectionId}`);
+      return;
+    }
+    event.preventDefault();
+    scrollToSection(sectionId, "smooth");
+    if (sectionId === "home") {
+      window.history.replaceState(null, "", window.location.pathname);
+    } else {
+      window.history.replaceState(null, "", `#${sectionId}`);
+    }
+  };
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 ${
@@ -99,6 +151,7 @@ export default function Navbar() {
         <Link
           href="/"
           className="flex items-center gap-5 font-bold transition-colors duration-300 text-black"
+          onClick={() => setMobileOpen(false)}
         >
           <img
             src="/assets/logo.svg"
@@ -120,7 +173,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setActiveSection(sectionId)}
+                onClick={(event) => handleNavigation(event, sectionId)}
                 className={`transition-colors duration-300 text-sm uppercase tracking-wider font-semibold ${
                   isActive
                     ? "text-brand-red border-b-2 border-brand-red pb-1"
@@ -133,9 +186,11 @@ export default function Navbar() {
           })}
         </nav>
         <button
+          type="button"
           className="flex justify-between items-center xl:hidden transition-colors duration-300 text-black"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={() => setMobileOpen((prev) => !prev)}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           <span className="material-symbols-outlined text-3xl!">
             {mobileOpen ? "close" : "menu"}
@@ -151,15 +206,12 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={(event) => handleNavigation(event, sectionId)}
                 className={`transition-colors text-sm uppercase tracking-wider font-semibold ${
                   isActive
                     ? "text-brand-red"
                     : "text-black hover:text-brand-red"
                 }`}
-                onClick={() => {
-                  setActiveSection(sectionId);
-                  setMobileOpen(false);
-                }}
               >
                 {item.label}
               </Link>

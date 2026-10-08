@@ -94,7 +94,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-section-gap-sm lg:py-section-gap-lg bg-[#f7f6f3] scroll-mt-20"
+      className="py-14 md:py-20 bg-[#f7f6f3] scroll-mt-20"
     >
       <div className="max-w-container-max mx-auto px-margin-x-mobile md:px-margin-x-desktop">
         <SectionHeading
