@@ -14,7 +14,28 @@ export const metadata: Metadata = {
   description:
     "Transforming complex challenges into AI-powered web and mobile applications. From fluid cross-platform experiences to advanced language model integrations, we build secure, scalable systems designed to automate operations and drive real results.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/assets/favicon.ico",
+  },
+  openGraph: {
+    title: "Amaya Perdana Kreasindo | Architecting Intelligent Digital Solutions",
+    description:
+      "Transforming complex challenges into AI-powered web and mobile applications. From fluid cross-platform experiences to advanced language model integrations, we build secure, scalable systems designed to automate operations and drive real results.",
+    url: "https://amayaperdana.id/",
+    type: "website",
+    images: [
+      {
+        url: "https://amayaperdana.id/assets/preview-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Amaya Perdana Kreasindo Preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Amaya Perdana Kreasindo",
+    description: "Architecting Intelligent Digital Solutions for Business Growth.",
+    images: ["https://amayaperdana.id/assets/preview-image.webp"],
   },
 };
 
