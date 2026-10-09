@@ -6,9 +6,11 @@ import HeroSection from "@/components/sections/Hero";
 import ProductsSection from "@/components/sections/Products";
 import ProjectsSection from "@/components/sections/Projects";
 import ServicesSection from "@/components/sections/Services";
+import { Suspense } from "react";
 
 export default function HomePage() {
   return (
+    <Suspense fallback={null}>
     <>
       <Navbar />
       <main>
@@ -21,5 +23,6 @@ export default function HomePage() {
       </main>
       <Footer />
     </>
+    </Suspense>
   );
 }
