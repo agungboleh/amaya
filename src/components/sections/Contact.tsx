@@ -215,7 +215,7 @@ export default function ContactSection() {
                     <div
                       className={`p-4 rounded-lg text-sm font-medium ${
                         status.type === "success"
-                          ? "bg-green-100 text-green-800"
+                          ? "bg-green-100 text-green-500"
                           : "bg-brand-red/10 text-brand-red"
                       }`}
                     >

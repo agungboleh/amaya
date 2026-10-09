@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     if (!fullName || !email || !message || !recaptchaToken) {
       return NextResponse.json(
         {
-          message: "Semua kolom wajib diisi dan reCAPTCHA harus diverifikasi.",
+          message: "All fields are required and reCAPTCHA must be verified.",
         },
         { status: 400 },
       );
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       const recaptchaData = await recaptchaRes.json();
       if (!recaptchaData.success || recaptchaData.score < 0.5) {
         return NextResponse.json(
-          { message: "Verifikasi reCAPTCHA gagal atau terdeteksi bot." },
+          { message: "reCAPTCHA verification failed or a bot was detected." },
           { status: 403 },
         );
       }
@@ -51,13 +51,13 @@ export async function POST(request: Request) {
     };
     await transporter.sendMail(mailOptions);
     return NextResponse.json(
-      { message: "Pesan berhasil dikirim!" },
+      { message: "Message sent successfully!" },
       { status: 200 },
     );
   } catch (error: any) {
-    console.error("Gagal mengirim email:", error);
+    console.error("Failed to send email:", error);
     return NextResponse.json(
-      { message: "Terjadi kesalahan pada server saat mengirim email." },
+      { message: "An error occurred on the server while sending the email." },
       { status: 500 },
     );
   }
