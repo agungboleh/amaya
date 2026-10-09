@@ -227,9 +227,13 @@ export default function ContactSection() {
                     className="w-full mt-4"
                     size="lg"
                     icon={RiMailSendLine}
-                    disabled={loading}
+                    disabled={loading || !executeRecaptcha}
                   >
-                    {loading ? "Sending..." : "Request a Consultation"}
+                    {loading
+                      ? "Sending..."
+                      : !executeRecaptcha
+                        ? "Initializing reCAPTCHA..."
+                        : "Request a Consultation"}
                   </Button>
                 </form>
               </div>
