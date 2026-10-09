@@ -11,6 +11,7 @@ interface ButtonProps {
   type?: "button" | "submit";
   target?: string;
   rel?: string;
+  disabled?: boolean;
 }
 
 export default function Button({

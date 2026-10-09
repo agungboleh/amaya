@@ -37,3 +37,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.grecaptcha-badge {
+  transform: scale(0.8);
+  transform-origin: bottom right;
+}
