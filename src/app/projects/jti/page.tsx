@@ -13,9 +13,11 @@ import {
   RiSignalWifiOffLine,
 } from "react-icons/ri";
 import ProjectsMore from "@/components/project-detail/ProjectsMore";
+import { Suspense } from "react";
 
 export default function JtiPage() {
   return (
+    <Suspense fallback={null}>
     <>
       <Navbar />
       <main>
@@ -69,5 +71,6 @@ export default function JtiPage() {
       </main>
       <Footer />
     </>
+    </Suspense>
   );
 }

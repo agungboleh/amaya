@@ -13,9 +13,11 @@ import {
   RiSignalCellularOffLine,
 } from "react-icons/ri";
 import ProjectsMore from "@/components/project-detail/ProjectsMore";
+import { Suspense } from "react";
 
 export default function KorindoGroupPage() {
   return (
+    <Suspense fallback={null}>
     <>
       <Navbar />
       <main>
@@ -67,5 +69,6 @@ export default function KorindoGroupPage() {
       </main>
       <Footer />
     </>
+    </Suspense>
   );
 }

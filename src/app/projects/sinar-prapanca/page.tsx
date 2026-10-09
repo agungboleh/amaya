@@ -6,9 +6,11 @@ import ProjectBackground from "@/components/project-detail/ProjectBackground";
 import ProjectSolution from "@/components/project-detail/ProjectSolution";
 import { RiAlarmWarningLine, RiDashboardLine, RiEyeOffLine, RiMapPin2Line, RiNewspaperLine, RiRfidLine } from "react-icons/ri";
 import ProjectsMore from "@/components/project-detail/ProjectsMore";
+import { Suspense } from "react";
 
 export default function SinarPrapancaPage() {
   return (
+    <Suspense fallback={null}>
     <>
       <Navbar />
       <main>
@@ -61,5 +63,6 @@ export default function SinarPrapancaPage() {
       </main>
       <Footer />
     </>
+    </Suspense>
   );
 }

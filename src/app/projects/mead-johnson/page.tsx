@@ -13,9 +13,11 @@ import {
   RiShieldKeyholeLine,
 } from "react-icons/ri";
 import ProjectsMore from "@/components/project-detail/ProjectsMore";
+import { Suspense } from "react";
 
 export default function MeadJohnsonPage() {
   return (
+    <Suspense fallback={null}>
     <>
       <Navbar />
       <main>
@@ -69,5 +71,6 @@ export default function MeadJohnsonPage() {
       </main>
       <Footer />
     </>
+    </Suspense>
   );
 }

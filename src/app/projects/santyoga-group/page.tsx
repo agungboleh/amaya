@@ -13,9 +13,11 @@ import {
   RiShieldKeyholeLine,
 } from "react-icons/ri";
 import ProjectsMore from "@/components/project-detail/ProjectsMore";
+import { Suspense } from "react";
 
 export default function SantyogaGroupPage() {
   return (
+    <Suspense fallback={null}>
     <>
       <Navbar />
       <main>
@@ -68,5 +70,6 @@ export default function SantyogaGroupPage() {
       </main>
       <Footer />
     </>
+    </Suspense>
   );
 }
