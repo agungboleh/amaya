@@ -3,7 +3,7 @@
 import { navItems } from "@/data/navigation";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, Suspense } from "react";
 
 const sectionIds = [
   "home",
@@ -140,6 +140,7 @@ export default function Navbar() {
     }
   };
   return (
+    <Suspense fallback={null}>
     <header
       className={`fixed top-0 left-0 right-0 z-50 ${
         scrolled
@@ -220,5 +221,6 @@ export default function Navbar() {
         </nav>
       )}
     </header>
+    </Suspense>
   );
 }
