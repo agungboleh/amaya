@@ -73,7 +73,8 @@ export default function ContactSection() {
       }
       setStatus({
         type: "success",
-        message: "Message sent successfully! Our team will get back to you soon.",
+        message:
+          "Message sent successfully! Our team will get back to you soon.",
       });
       setFormData({ fullName: "", email: "", company: "", message: "" });
     } catch (error: any) {
@@ -215,8 +216,8 @@ export default function ContactSection() {
                     <div
                       className={`p-4 rounded-lg text-sm font-medium ${
                         status.type === "success"
-                          ? "bg-green-100 text-green-500"
-                          : "bg-brand-red/10 text-brand-red"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
                       }`}
                     >
                       {status.message}
