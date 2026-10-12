@@ -51,7 +51,7 @@ export default function ContactSection() {
       if (!executeRecaptcha) {
         setStatus({
           type: "error",
-          message: "reCAPTCHA belum siap. Coba muat ulang halaman.",
+          message: "reCAPTCHA is not ready. Please reload the page.",
         });
         setLoading(false);
         return;
@@ -69,17 +69,17 @@ export default function ContactSection() {
       });
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.message || "Gagal mengirim pesan.");
+        throw new Error(result.message || "Failed to send message.");
       }
       setStatus({
         type: "success",
-        message: "Pesan berhasil terkirim! Tim kami akan segera merespons.",
+        message: "Message sent successfully! Our team will get back to you soon.",
       });
       setFormData({ fullName: "", email: "", company: "", message: "" });
     } catch (error: any) {
       setStatus({
         type: "error",
-        message: error.message || "Terjadi kesalahan pada server.",
+        message: error.message || "An error occurred on the server.",
       });
     } finally {
       setLoading(false);
